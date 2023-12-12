@@ -87,7 +87,7 @@ class FeatureCard extends StatelessWidget {
             ),
           ),
           Image.network(
-            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+            image,
             fit: BoxFit.fill,
             width: MediaQuery.of(context).size.width * 0.3,
           ),

@@ -36,7 +36,7 @@ class WeatherCard extends StatelessWidget {
               ],
             ),
           ),
-          SvgPicture.network('https://res.cloudinary.com/drpj8yeqp/image/upload/v1702401538/Uphaar_App/Rain_cloud_qdlwm2.svg')
+          Image.network('https://res.cloudinary.com/drpj8yeqp/image/upload/v1702409134/Uphaar_App/Rain_cloud_qdlwm2_ilaz0x.png')
         ],
       ),
     ) ;

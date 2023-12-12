@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navbar/NavBar.dart';
+import 'package:navbar/Widgets/NavBar.dart';
 import 'package:navbar/Widgets/FeatureCard.dart';
 import 'package:navbar/Widgets/VideoContainer.dart';
 import 'package:navbar/Widgets/Weather.dart';
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             FeatureCard(
               text: "Discover Nearest Fire Stations for Rapid Support",
-              image: '',
+              image: 'https://res.cloudinary.com/drpj8yeqp/image/upload/v1702409320/svg%20to%20png/Fireman_ws3tum_everjg.png',
               webUrl: 'inferno',
             ),
 
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             FeatureCard(
               text: "Find Nearby Medical Centers for Quick Aid",
-              image: '',
+              image: 'https://res.cloudinary.com/drpj8yeqp/image/upload/v1702409321/svg%20to%20png/Hospital_building_jar_of_pills_stethoscope_and_heart_with_a_cardiogram_cj7n7y_jiz8vg.png',
               webUrl: 'aushadh',
             ),
 
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             FeatureCard(
               text: "Your instant link to the closest police stations",
-              image: '',
+              image: 'https://res.cloudinary.com/drpj8yeqp/image/upload/v1702409321/svg%20to%20png/Police_isrsec_z04wfg.png',
               webUrl: 'suraksha',
             ),
 
