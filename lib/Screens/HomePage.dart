@@ -3,6 +3,7 @@ import 'package:navbar/NavBar.dart';
 import 'package:navbar/Widgets/FeatureCard.dart';
 import 'package:navbar/Widgets/VideoContainer.dart';
 import 'package:navbar/Widgets/Weather.dart';
+import 'package:navbar/Widgets/quick_access_card.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: IconButton(onPressed: () {}, icon: Icon(Icons.alarm)),
           ),
-          SizedBox(
+          const SizedBox(
             width: 4.0,
           ),
         ],
@@ -46,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10,
             ),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
               child: Text(
@@ -62,8 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10,
             ),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
               child: Text(
@@ -82,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10,
             ),
 
-            Padding(
+            const Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
@@ -102,8 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10,
             ),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
               child: Text(
@@ -115,21 +116,120 @@ class _MyHomePageState extends State<MyHomePage> {
             FeatureCard(
               text: "Your instant link to the closest police stations",
               image: '',
-              webUrl: '',
+              webUrl: 'suraksha',
             ),
 
             const SizedBox(
               height: 10,
             ),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
               child: Text(
                 "Helpline Number",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.all(8.0, ),
+              child: const Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                      QuickAccessCard(
+                        helplineNumber: "1091",
+                        description: "Woman Helpline",
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Footer
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.network(
+                  "https://res.cloudinary.com/drpj8yeqp/image/upload/v1702401134/Uphaar_App/Uphaar_App_Logo-removebg-preview_wvrpvd.png",
+                  width: 50,
+                ),
+                Text(
+                    "TEAM UPHAAR",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 5
+                    ),
+                )
+              ],
+            ),
+
+            const SizedBox(
+              height: 10,
             ),
           ],
         ),
