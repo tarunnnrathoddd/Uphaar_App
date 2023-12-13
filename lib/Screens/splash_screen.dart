@@ -19,11 +19,11 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 1),
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
     _animationController.forward();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 1), () {
       _navigatetohome();
     });
   }
