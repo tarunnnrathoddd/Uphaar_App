@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherCard extends StatelessWidget {
   const WeatherCard({super.key});
@@ -7,15 +8,20 @@ class WeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blue,
+        gradient: const LinearGradient(
+          colors: [Color(0xff81c3d8), Color(0xffffffff)],
+          stops: [0.25, 0.75],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
         borderRadius: BorderRadius.circular(10)
       ),
       width: MediaQuery.of(context).size.width,
       height: 150,
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
 
@@ -30,7 +36,7 @@ class WeatherCard extends StatelessWidget {
               ],
             ),
           ),
-          Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')
+          Image.network('https://res.cloudinary.com/drpj8yeqp/image/upload/v1702409134/Uphaar_App/Rain_cloud_qdlwm2_ilaz0x.png')
         ],
       ),
     ) ;

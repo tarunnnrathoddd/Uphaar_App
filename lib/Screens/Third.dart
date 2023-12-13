@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Second extends StatefulWidget {
-  const Second({super.key});
+
+class Third extends StatefulWidget {
+  const Third({Key? key}) : super(key: key);
 
   @override
-  State<Second> createState() => _SecondState();
+  _ThirdState createState() => _ThirdState();
 }
 
-class _SecondState extends State<Second> {
+class _ThirdState extends State<Third> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +16,9 @@ class _SecondState extends State<Second> {
         automaticallyImplyLeading: true,
       ),
       body: Center(
-        child: Text('This is the Second Page'),
+        child: Text('This is the Third Page'),
       ),
     );
   }
 }
+
