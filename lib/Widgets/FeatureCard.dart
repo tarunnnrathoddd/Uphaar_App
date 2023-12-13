@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navbar/Screens/First.dart';
+// import 'package:navbar/Screens/First.dart';
 // import 'package:navbar/Screens/Second.dart';
 
 class FeatureCard extends StatelessWidget {
@@ -47,13 +47,13 @@ class FeatureCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if(webUrl=="inferno") {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => First()
-                        ),
-                      );
-                    }
+                    // if(webUrl=="inferno") {
+                    //   Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //         builder: (context) => First()
+                    //     ),
+                    //   );
+                    // }
                     // else if(webUrl=="aushadh") {
                     //   Navigator.of(context).push(
                     //     MaterialPageRoute(
@@ -61,9 +61,9 @@ class FeatureCard extends StatelessWidget {
                     //     ),
                     //   );
                     // }
-                    else {
-                      debugPrint("not implemented yet");
-                    }
+                    // else {
+                    //   debugPrint("not implemented yet");
+                    // }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all( Colors.blue ),
