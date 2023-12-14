@@ -7,12 +7,18 @@ import 'package:navbar/Widgets/VideoContainer.dart';
 import 'package:navbar/Widgets/Weather.dart';
 import 'package:navbar/Widgets/quick_access_card.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:navbar/common/models/repository.dart';
 import 'package:navbar/common/models/user.dart';
 import 'package:navbar/utils/constants.dart';
 import 'package:navbar/utils/hive_service.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  String? phoneNumber;
+
+  MyHomePage({
+    Key? key,
+    this.phoneNumber
+  }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -38,10 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     getDeviceInfo();
+    updateRepositories();
   }
 
   void getDeviceInfo() async {
-    await hiveService.init();
     deviceId = await _getId();
     debugPrint("unique Id : " + deviceId.toString());
 
@@ -50,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if( !exists ) {
       // we will get a token in response, saving it to local hive storage
-      User userData = User(name: 'Pranav Kale', token: 'abcdefg');
+      User userData = User(number: '77569567888', token: 'abcdefg');
 
       hiveService.addBoxes<User>([userData], "user_data");
       kUserToken = userData.token;
@@ -61,7 +67,39 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     debugPrint( kUserToken );
+  }
 
+  void updateRepositories() async {
+    bool exists = await hiveService.isExists(boxName: 'repository');
+
+    if( !exists ) {
+      // if the box does not exists we will create a new object of repository and save it locally with
+      // the current data
+      final Repository repo = Repository(fireStations: [], hospitals: [], policeStations: [], lastUpdated: DateTime.now() );
+      await hiveService.addBoxes( [repo], 'repository' );
+
+      debugPrint( "if" );
+    }
+    else {
+      // if the box exists we will check the time difference between current time and last time
+      DateTime now = DateTime.now();
+      final List<Repository> repos = await hiveService.getBoxes<Repository>('repository');
+      Duration diff = now.difference( repos.first.lastUpdated );
+
+      // checking if difference is greater than 24 hours
+      if( diff.inHours > 24 ) {
+        // then updating the box with new data
+        await hiveService.deleteBox('repository');
+        final Repository repo = Repository(fireStations: [], hospitals: [], policeStations: [], lastUpdated: DateTime.now() );
+        await hiveService.addBoxes([repo], 'repository' );
+        debugPrint("Times up now time to update!");
+      }
+      else {
+        debugPrint("Let him cook!");
+      }
+
+      debugPrint( "difference$diff" );
+    }
   }
 
   @override

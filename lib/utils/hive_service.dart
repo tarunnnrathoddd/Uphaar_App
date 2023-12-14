@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:navbar/common/models/repository.dart';
 import 'package:navbar/common/models/user.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -7,8 +8,9 @@ class HiveService {
   init( )  async {
     Directory dir = await getApplicationDocumentsDirectory();
     Hive.init( dir.path );
-    Hive.registerAdapter( UserAdapter() );
 
+    Hive.registerAdapter( RepositoryAdapter() );
+    Hive.registerAdapter( UserAdapter() );
   }
 
   isExists({String? boxName}) async {

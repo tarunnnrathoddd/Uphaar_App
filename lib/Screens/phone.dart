@@ -2,18 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:navbar/Screens/verify.dart';
 import 'package:flutter/material.dart';
 
-
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key}) : super(key: key);
 
-  static String verify="";
+  static String verify = "";
   @override
   State<MyPhone> createState() => _MyPhoneState();
 }
 
 class _MyPhoneState extends State<MyPhone> {
   TextEditingController countryController = TextEditingController();
-  var phone="";
+  var phone = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -85,18 +84,16 @@ class _MyPhoneState extends State<MyPhone> {
                       width: 10,
                     ),
                     Expanded(
-
                         child: TextField(
-                          keyboardType: TextInputType.phone,
-                          onChanged: (value){
-                            phone=value;
-                          },
-
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Phone",
-                          ),
-                        ))
+                      keyboardType: TextInputType.phone,
+                      onChanged: (value) {
+                        phone = value;
+                      },
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Phone",
+                      ),
+                    ))
                   ],
                 ),
               ),
@@ -108,27 +105,32 @@ class _MyPhoneState extends State<MyPhone> {
                 height: 45,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue.shade900,
-                        shape: RoundedRectangleBorder(
+                      backgroundColor: Colors.blue.shade900,
+                      shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)
-                        ),
-                        foregroundColor: Colors.white,
+                      ),
+                      foregroundColor: Colors.white,
                     ),
-                    onPressed: () async{
+                    onPressed: () async {
                       await FirebaseAuth.instance.verifyPhoneNumber(
                         phoneNumber: '${countryController.text + phone}',
-                        verificationCompleted: (PhoneAuthCredential credential) {},
+                        verificationCompleted:
+                            (PhoneAuthCredential credential) {},
                         verificationFailed: (FirebaseAuthException e) {},
                         codeSent: (String verificationId, int? resendToken) {
-                          MyPhone.verify=verificationId;
+                          MyPhone.verify = verificationId;
                           // Navigator.pushNamed(context, 'verify');
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyVerify()));
-                          },
-
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyVerify(
+                                        phoneNumber: phone,
+                                      )));
+                        },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );
                     },
-                    child: Text("Send the code")),
+                    child: const Text("Send the code")),
               )
             ],
           ),
