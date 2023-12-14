@@ -10,6 +10,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:navbar/common/models/user.dart';
 import 'package:navbar/utils/constants.dart';
 import 'package:navbar/utils/hive_service.dart';
+// import 'package:flutter_sms/flutter_sms.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? deviceId;
   HiveService hiveService = HiveService();
+
+  List<String> recipents = ["9145338750, 7756956788"];
 
   Future<String?> _getId() async {
     var deviceInfo = DeviceInfoPlugin();
@@ -61,8 +64,15 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     debugPrint( kUserToken );
-
   }
+
+  // void _sendsms(String message, List<String> recipents) async
+  // {
+  //   String _result = await sendSMS(message: message, recipients: recipents)
+  //       .catchError((onError){
+  //         print(onError);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,14 +92,32 @@ class _MyHomePageState extends State<MyHomePage> {
         height: 80,
         child: Padding(
           padding: const EdgeInsets.only(top: 8.0),
-          child: IconButton(
-            onPressed: () {
-              debugPrint("open camera");
-            },
-            icon: const Icon(
-              Icons.camera_alt_outlined,
-              size: 42,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  debugPrint("open camera");
+                },
+
+                icon: const Icon(
+                  Icons.camera_alt_outlined,
+                  size: 42,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  // _sendsms("This is the test mesaage !", recipents);
+
+                  debugPrint("open camera");
+                },
+
+                icon: const Icon(
+                  Icons.vibration_outlined,
+                  size: 42,
+                ),
+              )
+            ],
           )
         )
       ),
@@ -226,8 +254,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         description: "Woman Helpline",
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1098",
+                        description: "Child Helpline",
                       ),
                     ],
                   ),
