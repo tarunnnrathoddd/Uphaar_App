@@ -61,6 +61,7 @@ dev_dependencies:
   http: ^1.1.2
   geolocator: ^10.1.0
   url_launcher: ^6.2.2
+#  twilio_flutter: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
