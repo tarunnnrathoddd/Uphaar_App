@@ -11,6 +11,7 @@ import 'package:navbar/common/models/repository.dart';
 import 'package:navbar/common/models/user.dart';
 import 'package:navbar/utils/constants.dart';
 import 'package:navbar/utils/hive_service.dart';
+// import 'package:flutter_sms/flutter_sms.dart';
 
 class MyHomePage extends StatefulWidget {
   String? phoneNumber;
@@ -27,6 +28,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? deviceId;
   HiveService hiveService = HiveService();
+
+  List<String> recipents = ["9145338750, 7756956788"];
 
   Future<String?> _getId() async {
     var deviceInfo = DeviceInfoPlugin();
@@ -67,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     debugPrint( kUserToken );
+<<<<<<< HEAD
   }
 
   void updateRepositories() async {
@@ -100,7 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
       debugPrint( "difference$diff" );
     }
+=======
+>>>>>>> c14166d1642bec32ca63b8d2defc86ef706c3dcc
   }
+
+  // void _sendsms(String message, List<String> recipents) async
+  // {
+  //   String _result = await sendSMS(message: message, recipients: recipents)
+  //       .catchError((onError){
+  //         print(onError);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,14 +134,32 @@ class _MyHomePageState extends State<MyHomePage> {
         height: 80,
         child: Padding(
           padding: const EdgeInsets.only(top: 8.0),
-          child: IconButton(
-            onPressed: () {
-              debugPrint("open camera");
-            },
-            icon: const Icon(
-              Icons.camera_alt_outlined,
-              size: 42,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  debugPrint("open camera");
+                },
+
+                icon: const Icon(
+                  Icons.camera_alt_outlined,
+                  size: 42,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  // _sendsms("This is the test mesaage !", recipents);
+
+                  debugPrint("open camera");
+                },
+
+                icon: const Icon(
+                  Icons.vibration_outlined,
+                  size: 42,
+                ),
+              )
+            ],
           )
         )
       ),
@@ -264,8 +296,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         description: "Woman Helpline",
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1098",
+                        description: "Child Helpline",
                       ),
                     ],
                   ),
