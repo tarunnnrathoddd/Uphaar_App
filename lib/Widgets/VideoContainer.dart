@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 
 class VideoContainer extends StatelessWidget {
-  const VideoContainer({super.key});
+  VideoContainer({super.key});
+
+  static String myVideoId = 'PQSagzssvUQ';
+  // the full url: https://www.youtube.com/watch?v=PQSagzssvUQ&ab_channel=NASA
+  // it's an interesting video from NASA on Youtube
+
+  // Initiate the Youtube player controller
+  final YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: myVideoId,
+    flags: const YoutubePlayerFlags(
+      autoPlay: false,
+      mute: false,
+      controlsVisibleAtStart: true
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width,
-      height: 150,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-          fit: BoxFit.fitWidth,
+    return AspectRatio(
+      aspectRatio: 16/9,
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        width: MediaQuery.of(context).size.width,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: YoutubePlayer(
+            controller: _controller,
+            liveUIColor: Colors.amber,
+          ),
         ),
       ),
     );

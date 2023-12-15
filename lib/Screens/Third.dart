@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:navbar/Widgets/info_card.dart';
-class Second extends StatefulWidget {
-  const Second({super.key});
+
+class Third extends StatefulWidget {
+  const Third({Key? key}) : super(key: key);
 
   @override
-  State<Second> createState() => _SecondState();
+  _ThirdState createState() => _ThirdState();
 }
 
-class _SecondState extends State<Second> {
+class _ThirdState extends State<Third> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +18,8 @@ class _SecondState extends State<Second> {
         body: Column(
           children: [
             InfoCard(name: "Saras Bagh", place: "Venue lime, Pune"),
-            InfoCard(name: "Saras Bagh", place: "Venue lime, Pune"),
-            InfoCard(name: "Saras Bagh", place: "Venue lime, Pune"),
+            InfoCard(name: "Shanti Niwas", place: "Lake vista , Pune"),
+            InfoCard(name: "Swami Samrth", place: "Venue lime, Pune"),
             InfoCard(name: "Saras Bagh", place: "Venue lime, Pune"),
             InfoCard(name: "Saras Bagh", place: "Venue lime, Pune"),
 
@@ -53,3 +54,4 @@ class _SecondState extends State<Second> {
     );
   }
 }
+

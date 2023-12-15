@@ -7,6 +7,7 @@ class NavBar extends StatelessWidget {
     child: ListView(
       padding: EdgeInsets.zero,
       children: [
+        
         UserAccountsDrawerHeader(accountName: Text('Uphaar'),
             accountEmail: Text('uphaarinsih2023@gmail.com'),
         currentAccountPicture: CircleAvatar(
@@ -27,6 +28,7 @@ class NavBar extends StatelessWidget {
             ),
           ),
         ),
+        
         ListTile(
           leading: Icon(Icons.home),
           title: Text('Home'),
@@ -66,6 +68,12 @@ class NavBar extends StatelessWidget {
           title: Text('Settings'),
           onTap: () => null,
         ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('contacts'),
+          onTap: () => null,
+        ),
+
         ListTile(
           leading: Icon(Icons.logout),
           title: Text('Logout'),

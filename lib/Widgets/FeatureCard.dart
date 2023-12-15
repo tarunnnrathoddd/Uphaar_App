@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:navbar/Screens/First.dart';
+import 'package:navbar/Screens/First.dart';
+import 'package:navbar/Screens/Second.dart';
+import 'package:navbar/Screens/Third.dart';
 // import 'package:navbar/Screens/Second.dart';
 
 class FeatureCard extends StatelessWidget {
@@ -47,23 +49,30 @@ class FeatureCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // if(webUrl=="inferno") {
-                    //   Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //         builder: (context) => First()
-                    //     ),
-                    //   );
-                    // }
-                    // else if(webUrl=="aushadh") {
-                    //   Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //         builder: (context) => Second()
-                    //     ),
-                    //   );
-                    // }
-                    // else {
-                    //   debugPrint("not implemented yet");
-                    // }
+                    if(webUrl=="inferno") {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => First()
+                        ),
+                      );
+                    }
+                    else if(webUrl=="aushadh") {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const Second()
+                        ),
+                      );
+                    }
+                    else if( webUrl == 'suraksha' ) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const Third()
+                        ),
+                      );
+                    }
+                    else {
+                      debugPrint("not implemented yet");
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all( Colors.blue ),
@@ -78,7 +87,7 @@ class FeatureCard extends StatelessWidget {
             ),
           ),
           Image.network(
-            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+            image,
             fit: BoxFit.fill,
             width: MediaQuery.of(context).size.width * 0.3,
           ),
