@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  background_sms: ^0.0.1
+  flutter_sms:
+    path: C:\Users\VICTUS\Downloads\flutter_sms-master\flutter_sms-master
+
 
 
   # The following adds the Cupertino Icons font to your application.

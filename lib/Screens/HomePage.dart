@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:navbar/Screens/contact.dart';
 import 'package:navbar/Widgets/NavBar.dart';
 import 'package:navbar/Widgets/FeatureCard.dart';
 import 'package:navbar/Widgets/VideoContainer.dart';
@@ -11,6 +12,11 @@ import 'package:navbar/common/models/repository.dart';
 import 'package:navbar/common/models/user.dart';
 import 'package:navbar/utils/constants.dart';
 import 'package:navbar/utils/hive_service.dart';
+
+import 'package:flutter_sms/flutter_sms.dart';
+import 'package:background_sms/background_sms.dart';
+import 'dart:developer';
+import 'package:permission_handler/permission_handler.dart';
 
 class MyHomePage extends StatefulWidget {
   String? phoneNumber;
@@ -101,36 +107,72 @@ class _MyHomePageState extends State<MyHomePage> {
       debugPrint( "difference$diff" );
     }
   }
-
+  List<String> recipents = ["9881197444","7558232254","7756956788"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavBar(),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade300,
-                spreadRadius: 1,
-                blurRadius: 2
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.shade300,
+                  spreadRadius: 1,
+                  blurRadius: 2
+              ),
+            ],
+            color: Colors.white,
+          ),
+          height: 80,
+        child: Row(
+          children: [
+
+
+            Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: IconButton(
+                  onPressed: () {
+                    debugPrint("open camera");
+                  },
+                  icon: const Icon(
+                    Icons.camera_alt_outlined,
+                    size: 42,
+                  ),
+                )
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+
+                  send("Emergency message", recipents);
+                },
+                child: Text("Send SOS"),
+
+              ),
+
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ContactPage()),
+                  );
+                },
+                child: Text("Add contact"),
+
+              ),
+
+            ),
+
+
           ],
-          color: Colors.white,
-        ),
-        height: 80,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: IconButton(
-            onPressed: () {
-              debugPrint("open camera");
-            },
-            icon: const Icon(
-              Icons.camera_alt_outlined,
-              size: 42,
-            ),
-          )
         )
       ),
+
+
       appBar: AppBar(
         elevation: 1.0,
         backgroundColor: Colors.white,
@@ -349,4 +391,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+void send(String message1, List<String> recipents) async
+{
+  await [ Permission.camera, Permission.microphone, Permission.sms ].request();
+
+  for(var i=0;i<recipents.length;i++)
+  {
+    SmsStatus result = await BackgroundSms.sendMessage(
+        phoneNumber: recipents[i], message: message1);
+    if (result == SmsStatus.sent) {
+      print("Sent");
+    } else {
+      print("Failed");
+    }
+  }
+
 }
