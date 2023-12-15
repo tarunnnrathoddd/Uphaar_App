@@ -70,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     debugPrint( kUserToken );
-<<<<<<< HEAD
   }
 
   void updateRepositories() async {
@@ -104,8 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
       debugPrint( "difference$diff" );
     }
-=======
->>>>>>> c14166d1642bec32ca63b8d2defc86ef706c3dcc
   }
 
   // void _sendsms(String message, List<String> recipents) async
@@ -180,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 4.0,
           ),
         ],
-        title: Text('Uphaar'),
+        title: const Text('Uphaar'),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -287,6 +284,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 8.0,
               ),
               child: const Column(
+
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -294,10 +292,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       QuickAccessCard(
                         helplineNumber: "1091",
                         description: "Woman Helpline",
+                        icon: Icons.woman,
+                        border: true,
                       ),
+
                       QuickAccessCard(
                         helplineNumber: "1098",
                         description: "Child Helpline",
+                        icon: Icons.child_care,
+                        border: false,
                       ),
                     ],
                   ),
@@ -305,12 +308,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1291",
+                        description: "Senior Citizen Helpline",
+                        icon: Icons.elderly_woman,
+                        border: false,
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1075",
+                        description: "Covid19 Helpline",
+                        icon: Icons.coronavirus,
+                        border: true,
                       ),
                     ],
                   ),
@@ -318,12 +325,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "100",
+                        description: "Police Emergency",
+                        icon: Icons.local_police,
+                        border: true,
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "102",
+                        description: "Ambulance",
+                        icon: Icons.local_hospital,
+                        border: false,
                       ),
                     ],
                   ),
@@ -331,28 +342,32 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "101",
+                        description: "Fire Emergency",
+                        icon: Icons.fire_extinguisher,
+                        border: false,
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1078",
+                        description: "Disaster Management Helpline",
+                        icon: Icons.flood,
+                        border: true,
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
-                      ),
-                      QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: [
+                  //     QuickAccessCard(
+                  //       helplineNumber: "1091",
+                  //       description: "Woman Helpline",
+                  //     ),
+                  //     QuickAccessCard(
+                  //       helplineNumber: "1091",
+                  //       description: "Woman Helpline",
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

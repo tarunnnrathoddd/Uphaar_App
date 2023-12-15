@@ -120,6 +120,9 @@ class _MyPhoneState extends State<MyPhone> {
                         codeSent: (String verificationId, int? resendToken) {
                           MyPhone.verify = verificationId;
                           // Navigator.pushNamed(context, 'verify');
+
+
+
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
