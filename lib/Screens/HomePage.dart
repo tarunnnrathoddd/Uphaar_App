@@ -7,13 +7,19 @@ import 'package:navbar/Widgets/VideoContainer.dart';
 import 'package:navbar/Widgets/Weather.dart';
 import 'package:navbar/Widgets/quick_access_card.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:navbar/common/models/repository.dart';
 import 'package:navbar/common/models/user.dart';
 import 'package:navbar/utils/constants.dart';
 import 'package:navbar/utils/hive_service.dart';
 // import 'package:flutter_sms/flutter_sms.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  String? phoneNumber;
+
+  MyHomePage({
+    Key? key,
+    this.phoneNumber
+  }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -41,10 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     getDeviceInfo();
+    updateRepositories();
   }
 
   void getDeviceInfo() async {
-    await hiveService.init();
     deviceId = await _getId();
     debugPrint("unique Id : " + deviceId.toString());
 
@@ -53,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if( !exists ) {
       // we will get a token in response, saving it to local hive storage
-      User userData = User(name: 'Pranav Kale', token: 'abcdefg');
+      User userData = User(number: '77569567888', token: 'abcdefg');
 
       hiveService.addBoxes<User>([userData], "user_data");
       kUserToken = userData.token;
@@ -64,6 +70,40 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     debugPrint( kUserToken );
+
+  }
+
+  void updateRepositories() async {
+    bool exists = await hiveService.isExists(boxName: 'repository');
+
+    if( !exists ) {
+      // if the box does not exists we will create a new object of repository and save it locally with
+      // the current data
+      final Repository repo = Repository(fireStations: [], hospitals: [], policeStations: [], lastUpdated: DateTime.now() );
+      await hiveService.addBoxes( [repo], 'repository' );
+
+      debugPrint( "if" );
+    }
+    else {
+      // if the box exists we will check the time difference between current time and last time
+      DateTime now = DateTime.now();
+      final List<Repository> repos = await hiveService.getBoxes<Repository>('repository');
+      Duration diff = now.difference( repos.first.lastUpdated );
+
+      // checking if difference is greater than 24 hours
+      if( diff.inHours > 24 ) {
+        // then updating the box with new data
+        await hiveService.deleteBox('repository');
+        final Repository repo = Repository(fireStations: [], hospitals: [], policeStations: [], lastUpdated: DateTime.now() );
+        await hiveService.addBoxes([repo], 'repository' );
+        debugPrint("Times up now time to update!");
+      }
+      else {
+        debugPrint("Let him cook!");
+      }
+
+      debugPrint( "difference$diff" );
+    }
   }
 
   // void _sendsms(String message, List<String> recipents) async
@@ -138,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 4.0,
           ),
         ],
-        title: Text('Uphaar'),
+        title: const Text('Uphaar'),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -245,6 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 8.0,
               ),
               child: const Column(
+
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -252,10 +293,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       QuickAccessCard(
                         helplineNumber: "1091",
                         description: "Woman Helpline",
+                        icon: Icons.woman,
+                        border: true,
                       ),
+
                       QuickAccessCard(
                         helplineNumber: "1098",
                         description: "Child Helpline",
+                        icon: Icons.child_care,
+                        border: false,
                       ),
                     ],
                   ),
@@ -263,12 +309,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1291",
+                        description: "Senior Citizen Helpline",
+                        icon: Icons.elderly_woman,
+                        border: false,
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1075",
+                        description: "Covid19 Helpline",
+                        icon: Icons.coronavirus,
+                        border: true,
                       ),
                     ],
                   ),
@@ -276,12 +326,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "100",
+                        description: "Police Emergency",
+                        icon: Icons.local_police,
+                        border: true,
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "102",
+                        description: "Ambulance",
+                        icon: Icons.local_hospital,
+                        border: false,
                       ),
                     ],
                   ),
@@ -289,28 +343,32 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "101",
+                        description: "Fire Emergency",
+                        icon: Icons.fire_extinguisher,
+                        border: false,
                       ),
                       QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
+                        helplineNumber: "1078",
+                        description: "Disaster Management Helpline",
+                        icon: Icons.flood,
+                        border: true,
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
-                      ),
-                      QuickAccessCard(
-                        helplineNumber: "1091",
-                        description: "Woman Helpline",
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: [
+                  //     QuickAccessCard(
+                  //       helplineNumber: "1091",
+                  //       description: "Woman Helpline",
+                  //     ),
+                  //     QuickAccessCard(
+                  //       helplineNumber: "1091",
+                  //       description: "Woman Helpline",
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

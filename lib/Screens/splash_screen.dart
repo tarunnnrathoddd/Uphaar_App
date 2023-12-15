@@ -3,16 +3,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:navbar/Screens/HomePage.dart';
 import 'package:navbar/Screens/phone.dart';
+import 'package:navbar/common/models/user.dart';
+import 'package:navbar/utils/hive_service.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
+  HiveService hiveService = HiveService();
 
   @override
   void initState() {
@@ -29,9 +31,32 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   _navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MyHomePage()));
+    // checking if user information is present
+
+    // if present navigate to homePage
+    // now sending this ID to a API if there is no token in the system
+
+    await hiveService.init();
+    bool exists = await hiveService.isExists(boxName: 'user_data');
+
+    if( exists ) {
+      final List<User> userData = await hiveService.getBoxes<User>('user_data');
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyHomePage(phoneNumber: userData.first.number),
+        )
+      );
+    }
+    else {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyHomePage(),
+          )
+      );
+    }
+    // else navigate to registration page
   }
 
   @override
