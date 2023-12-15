@@ -32,7 +32,7 @@ Ensure the following prerequisites are met:
 - npm (Node Package Manager) or yarn is installed.
 
  
-### Installation
+### Installation of Uphaar Admin
 
 
 ## Run Locally
