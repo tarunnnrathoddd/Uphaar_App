@@ -9,7 +9,7 @@ Uphaar is a sophisticated MERN (MongoDB, Express.js, React, Node.js) STACK web a
 ## Features
 
 - **Uphaar Admin:**
- - Repository: [Uphaar_Admin](https://github.com/Adityalad-25/Uphaar-Admin.git)
+ - Repository: [Uphaar_Admin](https://github.com/Adityalad-25/Uphaar-Admin)
   - Efficiently manage .
   - Add , Update and Delete data for Firestations , Hospital and Policstations.
   - Perform a spectrum of Administrative actions.
