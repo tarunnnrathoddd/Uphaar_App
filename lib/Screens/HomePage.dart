@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:navbar/Screens/camera.dart';
 import 'package:navbar/Screens/contact.dart';
 import 'package:navbar/Widgets/NavBar.dart';
 import 'package:navbar/Widgets/FeatureCard.dart';
@@ -18,8 +17,6 @@ import 'package:flutter_sms/flutter_sms.dart';
 import 'package:background_sms/background_sms.dart';
 import 'dart:developer';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:camera/camera.dart';
-import 'package:audioplayers/audioplayers.dart';
 
 class MyHomePage extends StatefulWidget {
   String? phoneNumber;
@@ -110,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
       debugPrint( "difference$diff" );
     }
   }
-  List<String> recipents = ["9881197444"];
+  List<String> recipents = ["9881197444","7558232254","7756956788"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,15 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: IconButton(
-                  onPressed: () async{
-                    await availableCameras().then(
-                          (value) => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CameraPage(cameras: value,),
-                        ),
-                      ),
-                    );
+                  onPressed: () {
+                    debugPrint("open camera");
                   },
                   icon: const Icon(
                     Icons.camera_alt_outlined,
@@ -153,9 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                onPressed: () async{
-                  final player = AudioPlayer();
-                  await player.play(UrlSource('security-alarm.mp3'));
+                onPressed: () {
+
                   send("Emergency message", recipents);
                 },
                 child: Text("Send SOS"),
